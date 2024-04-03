@@ -1,0 +1,57 @@
+<!-- mymap.html (Django Template) -->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Custom Marker Icons</title>
+    <style>
+        #map {
+            height: 100VH;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+
+<p>Total Places are : {{ lat }}  {{ lng }}</p>
+<div id="map"></div>
+
+<script>
+    lat ={{ lat }}
+    lng = {{ lng }}
+    var center =  {lat: lat, lng: lng};
+    function initMap() {
+        var map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 07,
+            center: center,
+           
+        });
+
+       
+        
+        // Custom marker icon
+        var customIcon = {
+            url: 'http://maps.gstatic.com/mapfiles/ms2/micons/bus.png',  // Replace with the path to your custom icon
+            scaledSize: new google.maps.Size(20, 20)  // Adjust the size of the icon
+        };
+
+        busMarker = new google.maps.Marker({
+            map: map,
+            position: {lat: lat, lng: lng},  // Initial position
+            title: 'Bus',
+            icon: customIcon
+        });
+    
+  
+        
+    }
+    
+    
+</script>
+
+<script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC-XswH7ZFfAcojihasZo4AYAtQvvqJBU0&callback=initMap">
+</script>
+
+</body>
+</html>

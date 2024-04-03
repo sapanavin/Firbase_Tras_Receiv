@@ -1,0 +1,38 @@
+/* 
+ * Always set the map height explicitly to define the size of the div element
+ * that contains the map. 
+ */
+ 
+  
+  /* 
+   * Optional: Makes the sample page fill the window. 
+   */
+  html,
+  body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+
+  #map {
+    height: 100VH;
+  }
+  .infostyle{
+    color: darkblue; 
+    font-size: 16px;
+  }
+
+  
+      /* Define CSS animation */
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+      /* Apply animation to InfoWindow content */
+      .infowindow-content {
+        animation: fadeIn 0.5s ease-in-out;
+      }
