@@ -1,0 +1,91 @@
+{% load static %}
+
+<html>
+  <head>
+    <title>Add Map</title>
+    
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+    <link rel="stylesheet" href="{% static '/cp_to_moze/css/google_api.css' %}">
+    
+     
+  </head>
+  <body>
+    {% comment %} <h3>My Google Maps Demo</h3>
+    <h1> {{ name }} </h1> {% endcomment %}
+    <!--The div element for the map -->
+    <div id="infoPanel">
+      <div class="infoColumn">
+          <div class="title">Vehicle Details</div>
+          <div class="info">Vehicle ID: ABC123</div>
+          <div class="info">Model: XYZ</div>
+          <!-- Add more vehicle details here -->
+      </div>
+      <div class="infoColumn">
+          <div class="title">Driver Details</div>
+          <div class="info">Name: John Doe</div>
+          <div class="info">License: ABC123</div>
+          <!-- Add more driver details here -->
+      </div>
+      <div class="infoColumn" >
+          <div class="title">Vehicle Speed</div>
+          <div class="info" id="infospeed">Speed: 0 km/h</div>
+          <!-- Add more speed-related information here -->
+      </div>
+      <div class="infoColumn">
+          <div class="title">Updates</div>
+          <div class="info" id="infoupdates">Last Updated: 2024-04-12 15:30</div>
+         
+          <!-- Add more update-related information here -->
+      </div>
+  </div>
+  
+    <div id="map"></div>
+
+    <h1>Server Sent Events For GPS</h1>
+ 
+    <button onclick="startSSE()">Start</button>
+    <button onclick="stopSSE()" disabled>Stop</button>
+    <div id="sse-data">I am from index</div>
+    
+   
+    
+    <script>
+      const imageUrl = "{% static 'sse_gps/images/car_topview.svg' %}";
+      console.log(imageUrl);
+  </script>
+    <!-- prettier-ignore -->
+    <script>(g=>{var h,a,k,p="The Google Maps JavaScript API",c="google",l="importLibrary",q="__ib__",m=document,b=window;b=b[c]||(b[c]={});var d=b.maps||(b.maps={}),r=new Set,e=new URLSearchParams,u=()=>h||(h=new Promise(async(f,n)=>{await (a=m.createElement("script"));e.set("libraries",[...r]+"");for(k in g)e.set(k.replace(/[A-Z]/g,t=>"_"+t[0].toLowerCase()),g[k]);e.set("callback",c+".maps."+q);a.src=`https://maps.${c}apis.com/maps/api/js?`+e;d[q]=f;a.onerror=()=>h=n(Error(p+" could not load."));a.nonce=m.querySelector("script[nonce]")?.nonce||"";m.head.append(a)}));d[l]?console.warn(p+" only loads once. Ignoring:",g):d[l]=(f,...n)=>r.add(f)&&u().then(()=>d[l](f,...n))})
+        ({key: "AIzaSyC-XswH7ZFfAcojihasZo4AYAtQvvqJBU0", v: "weekly"});</script>
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC-XswH7ZFfAcojihasZo4AYAtQvvqJBU0&libraries=geometry"></script>
+
+        <script src="{% static 'cp_to_moze/js/all_constants_and_variables.js' %}"></script>
+        
+    
+        <script src="{% static 'cp_to_moze/js/cp_to_moze.js' %}"></script>
+
+        <script src="{% static 'cp_to_moze/js/infowindow_details.js' %}"></script>
+         <script src="{% static 'cp_to_moze/js/retangle_latlngbounds.js' %}"></script>
+         <script src="{% static 'cp_to_moze/js/update_infopanel.js' %}"></script>
+            
+        
+</body>
+</html>
+
+{% comment %} 
+<script src="{% static 'cp_to_moze/js/test.js' %}"></script>
+  <script src="{% static 'cp_to_moze/js/customOverlay.js' %}"></script>
+              
+<script src="{% static 'sse_gps/js/update_bus_icon.js' %}"></script>
+  <script src="{% static 'cp_to_moze/js/infowindow_details.js' %}"></script>
+        <script src="{% static 'cp_to_moze/js/retangle_latlngbounds.js' %}"></script>
+       
+        
+
+   <script src="{% static 'cp_to_moze/js/mapview_calculations.js' %}"></script>
+        
+
+         <script src="{% static 'sse_gps/js/update_bus_icon.js' %}"></script>
+        <script src="{% static 'sse_gps/js/moze_to_concord.js' %}"></script>
+
+{% endcomment %}

@@ -27,9 +27,9 @@ async def sse_stream(request):
         i = 0
         
         while True:
-# [lat, lng] = data_Append()
+
             lat, lng = lat_lng_points[i]  
-            print("from sse :  ", lat, lng)
+           # print("from sse :  ", lat, lng)
             yield f'data: {random.choice(emojis)} {i} {lat} {lng}\n\n'
             i += 1
             await asyncio.sleep(0.5)
@@ -293,6 +293,7 @@ def cp_to_moze_semiauto():
         
     third_stop_opp_Bit_Ahead_fitness = (18.577039339763772, 73.77067525148838) 
     destination_moze_clg = (18.574843208216823, 73.76797181992866)
+    moze_college_parking = (18.57469422327938, 73.7679466454322)
  
     polyline_coordinates = [
         start_location_concordPortia,
@@ -326,6 +327,8 @@ def cp_to_moze_semiauto():
         (18.575129872685356, 73.76815382394344),
         (18.575108261569692, 73.76794058835021),#Entering Towards Moze College
         destination_moze_clg,
+        (18.574887383775636, 73.76796661466558),
+        moze_college_parking
         ]
     
         # Calculate distances between consecutive points

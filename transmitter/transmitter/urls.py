@@ -17,6 +17,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import include, path
 urlpatterns = [
+    path('cp/', include('cp_to_moze.urls')),
     path('sim/', include('sim.urls')),
     path('sse_gps/', include('sse_gps.urls')),
    
