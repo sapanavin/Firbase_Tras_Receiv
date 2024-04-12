@@ -1,11 +1,13 @@
 import asyncio
 import random
 from math import cos, radians
+import time
 import pandas as pd
 from django.http import HttpResponse, StreamingHttpResponse
 from django.shortcuts import render
 import googlemaps
 import  templates
+from cp_to_moze.models import LatLng
 from transmitter.settings import GOOGLE_API_KEY
 import geopy.distance
 import numpy as np
@@ -55,6 +57,25 @@ async def sse_stream(request):
 
     return StreamingHttpResponse(event_stream(), content_type='text/event-stream')
 
+
+def update_sql_database():
+     # Assume that GPS hardware sending real time latlng to mysql database
+        lat_lng_points = cp_to_moze_semiauto()
+
+        for data  in lat_lng_points:
+                print("from for data loop", data)
+            # Create and save the model instance
+                time.sleep(1)
+                [lat , lng] = data
+                instance = LatLng(lat=lat, lng=lng, date_time=datetime.now())
+                instance.save()
+                
+        return HttpResponse("Data saved successfully")
+
+
+
+
+
 def speed_calculate(prev_lat, prev_lng, lat, lng):
     #print("from speed")
     distances = geopy.distance.distance((prev_lat,prev_lng), (lat, lng)).meters
@@ -63,6 +84,7 @@ def speed_calculate(prev_lat, prev_lng, lat, lng):
     return distances
  
 def cp_to_moze_semiauto():
+    print("from cp_to_moze_semiauto")
     start_location_concordPortia= (18.582193106477664, 73.77107035263678)
     first_stop_wonderwall = (18.580368668590793, 73.77126789723931)
     second_stop_pallazo =(18.57952743169931, 73.77087309775438)
@@ -182,3 +204,5 @@ def Falgrove_to_Disney_fromExcel():
 def index(request):
     print("from Index ")
     return render(request, 'cp_to_moze/index.html',{"name":"sapana123"})
+
+# update_sql_database()

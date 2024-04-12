@@ -80,29 +80,9 @@ updateInfoWindowContent = function (new_pos, newContent) {
 
       if (markerPosition.lat() === new_pos.lat && markerPosition.lng() === new_pos.lng) {
           // Found the marker with matching position, update its infowindow content
-           // update_windows(i);
-           console.log("called from updateInfoWindowContent:==>", i);
-                   if(i === 0) {
-                     update_windows_from_origin();
-                     // Break out of the loop since we found the marker
-                  break;
-                }
-                 else if(i === 1 ){
-                     update_windows_from_first_stop();
-                     break;
-                 }
-                 else if(i === 2 ){
-                   update_windows_from_second_stop();
-                  break;
-               }
-               else if(i === 3 ){
-                 update_windows_from_third_stop();
-                 break;
-             }
-             else if(i === 4 ){
-               update_windows_from_destination();
-               break;
-          }
+          var content =  update_windows(i);
+           updateInfoPanelUpdates( content );
+
      }
     
     }
@@ -130,114 +110,9 @@ update_windows = function(location_number){
             infowindow.open(map, markerAndInfowindow.marker);
                 //update_all_info_windows()
           }         
-      
+      return newContent;
 }
 
-
-update_windows_from_origin = function() {
-
-  for (var i = 0; i < markersAndInfowindows.length; i++) {
-    //console.log("i : ==>>"  ,i);
-    var markerAndInfowindow = markersAndInfowindows[i];
-
-          var infowindow = markerAndInfowindow.infowindow;
-
-                // Close the previous info window
-            infowindow.close();
-            
-            newContent =  `${formatAMPM(new Date)}` + '<br>' + messages_when_bus_is_arrived[0];
-                // Update the content
-            infowindow.setContent('<div class="infostyle">' + newContent + '</div>');
-            infowindow.setZIndex(1);
-
-                // Open the updated info window
-            infowindow.open(map, markerAndInfowindow.marker);
-                //update_all_info_windows()
-          }         
-      
-  }   
-
-update_windows_from_first_stop = function(){
-    for (var i = 1; i < markersAndInfowindows.length; i++) {
-      //console.log("i : ==>>"  ,i);
-      var markerAndInfowindow = markersAndInfowindows[i];
-  
-            var infowindow = markerAndInfowindow.infowindow;
-  
-                  // Close the previous info window
-              infowindow.close();
-              
-              newContent =  `${formatAMPM(new Date)}` + '<br>' + messages_when_bus_is_arrived[1];
-                  // Update the content
-              infowindow.setContent('<div class="infostyle">' + newContent + '</div>');
-  
-                  // Open the updated info window
-              infowindow.open(map, markerAndInfowindow.marker);
-                  //update_all_info_windows()
-            }   
-  }
-
-update_windows_from_second_stop = function(){
-
-    for (var i = 2; i < markersAndInfowindows.length; i++) {
-      //console.log("i : ==>>"  ,i);
-      var markerAndInfowindow = markersAndInfowindows[i];
-  
-            var infowindow = markerAndInfowindow.infowindow;
-  
-                  // Close the previous info window
-              infowindow.close();
-              
-              newContent =  `${formatAMPM(new Date)}` + '<br>' + messages_when_bus_is_arrived[2];
-                  // Update the content
-              infowindow.setContent('<div class="infostyle">' + newContent + '</div>');
-  
-                  // Open the updated info window
-              infowindow.open(map, markerAndInfowindow.marker);
-                  //update_all_info_windows()
-            }  
-  };
-
-update_windows_from_third_stop = function(){
-
-    for (var i = 3; i < markersAndInfowindows.length; i++) {
-      //console.log("i : ==>>"  ,i);
-      var markerAndInfowindow = markersAndInfowindows[i];
-  
-            var infowindow = markerAndInfowindow.infowindow;
-  
-                  // Close the previous info window
-              infowindow.close();
-              
-              newContent =  `${formatAMPM(new Date)}` + '<br>' + messages_when_bus_is_arrived[3];
-                  // Update the content
-              infowindow.setContent('<div class="infostyle">' + newContent + '</div>');
-  
-                  // Open the updated info window
-              infowindow.open(map, markerAndInfowindow.marker);
-                  //update_all_info_windows()
-            }  
-  };
-  update_windows_from_destination = function(){
-
-    for (var i = 4; i < markersAndInfowindows.length; i++) {
-      //console.log("i : ==>>"  ,i);
-      var markerAndInfowindow = markersAndInfowindows[i];
-  
-            var infowindow = markerAndInfowindow.infowindow;
-  
-                  // Close the previous info window
-              infowindow.close();
-              
-              newContent =  `${formatAMPM(new Date)}` + '<br>' + messages_when_bus_is_arrived[4];
-                  // Update the content
-              infowindow.setContent('<div class="infostyle">' + newContent + '</div>');
-  
-                  // Open the updated info window
-              infowindow.open(map, markerAndInfowindow.marker);
-                  //update_all_info_windows()
-            }  
-  };
 
 
 function formatAMPM(date) {
